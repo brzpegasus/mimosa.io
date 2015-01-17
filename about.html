@@ -74,24 +74,37 @@
         </ul>
       </div>
       <div class="col-md-10 col-sm-9">
-        <h2 id="upgrade21">2.1 upgrade</h2>
-        <p><code>2.1</code> upgraded logging in a major way. There are just a few things to keep in mind when upgrading.</p>
-        <ul>
-          <li>All of the modules have been updated to use the latest logging functionality.  The newest modules must be used with Mimosa <code>2.1</code> as they expect Mimosa to pass them the logger.  Using the most up to date modules with older versions of Mimosa will result in errors.</li>
-          <li>Version <code>2.1</code> will work fine with older versions of modules except that the logging messages will bounce back and forth between the new logging (mimosa core <code>2.1</code>) and the old logging (from the module).</li>
-          <li>If you were using (overriding) the <code>growl.onsuccess</code> flags, you'll find those flags are no longer available.  They have been removed.</li>
-        </ul>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 id="upgrade21">2.1 upgrade</h4>
+          </div>
+          <div class="panel-body">
+            <p><code>2.1</code> upgraded logging in a major way. There are just a few things to keep in mind when upgrading.</p>
+            <ul>
+              <li>All of the modules have been updated to use the latest logging functionality.  The newest modules must be used with Mimosa <code>2.1</code> as they expect Mimosa to pass them the logger.  Using the most up to date modules with older versions of Mimosa will result in errors.</li>
+              <li>Version <code>2.1</code> will work fine with older versions of modules except that the logging messages will bounce back and forth between the new logging (mimosa core <code>2.1</code>) and the old logging (from the module).</li>
+              <li>If you were using (overriding) the <code>growl.onsuccess</code> flags, you'll find those flags are no longer available.  They have been removed.</li>
+            </ul>
+          </div>
+        </div>
 
-        <h2 id="upgrade20">2.0 upgrade</h2>
-        <p><code>2.0</code> brings the externalization of Mimosa's JS/CSS/Template compilers. This slims down Mimosa's footprint, speeding up installs, and greatly simplifies the Mimosa codebase. Externalizing the compilers also sets Mimosa up for other contributors to very easily create new, external compilers of their own. Previously that would have entailed pull requests back to the main Mimosa library.</p>
-        <p>Only config changes are necessary to upgrade to <code>2.0</code>.</p>
-        <ul>
-          <li>Each of Mimosa's JS/CSS/Template compilers now have their own Mimosa module. If using any of them, they need to be added to the <code>mimosa-config</code> <code>modules</code> array. For instance, if using CoffeeScript, Stylus and Handlebars, <code>"coffeescript", "stylus", "handlebars"</code> will need to be added to the <code>modules</code> array.</li>
-          <li>Mimosa's "copy" compiler was also pulled out of Mimosa's core. That compiler handles any files that go through any sort of transpiling or preprocessing. If using images, <code>.js</code> or <code>.css</code> files, add <code>"copy"</code> to the modules list. It will be a very rare project that doesn't need to add <code>"copy"</code> to the list.</li>
-          <li>Using the <code>compiler</code> config? That is going away. Each compiler module has its own configuration, including the ability to provide a specific version of the compiler and change the extensions being used for the compiler. For details on each compiler's config, check the README on that compiler's github page. For instance, here is the <a href="https://github.com/dbashford/mimosa-livescript">LiveScript README</a>.</li>
-          <li>The Handlebars compiler has been pulled out into two separate compilers, one for those using ember.js, and those who are not.  This removes the need to specifically configure ember.  Instead of configuring ember, just use the ember specific compiler. The <a href="https://github.com/dbashford/mimosa-ember-handlebars">ember-handlebars</a> and <a href="https://github.com/dbashford/mimosa-handlebars">handlebars</a> github pages have details on how to configure those new modules.</li>
-          <li>The mimosa-server module now depends on the project to have the correct transpilers <code>npm install</code>ed to use those transpilers for node.js server code. So, for instance, if LiveScript is being used on the server, then LiveScript must be  <code>npm install</code>ed into the project.</li>
-        </ul>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+
+            <h4 id="upgrade20">2.0 upgrade</h4>
+          </div>
+          <div class="panel-body">
+            <p><code>2.0</code> brings the externalization of Mimosa's JS/CSS/Template compilers. This slims down Mimosa's footprint, speeding up installs, and greatly simplifies the Mimosa codebase. Externalizing the compilers also sets Mimosa up for other contributors to very easily create new, external compilers of their own. Previously that would have entailed pull requests back to the main Mimosa library.</p>
+            <p>Only config changes are necessary to upgrade to <code>2.0</code>.</p>
+            <ul>
+              <li>Each of Mimosa's JS/CSS/Template compilers now have their own Mimosa module. If using any of them, they need to be added to the <code>mimosa-config</code> <code>modules</code> array. For instance, if using CoffeeScript, Stylus and Handlebars, <code>"coffeescript", "stylus", "handlebars"</code> will need to be added to the <code>modules</code> array.</li>
+              <li>Mimosa's "copy" compiler was also pulled out of Mimosa's core. That compiler handles any files that go through any sort of transpiling or preprocessing. If using images, <code>.js</code> or <code>.css</code> files, add <code>"copy"</code> to the modules list. It will be a very rare project that doesn't need to add <code>"copy"</code> to the list.</li>
+              <li>Using the <code>compiler</code> config? That is going away. Each compiler module has its own configuration, including the ability to provide a specific version of the compiler and change the extensions being used for the compiler. For details on each compiler's config, check the README on that compiler's github page. For instance, here is the <a href="https://github.com/dbashford/mimosa-livescript">LiveScript README</a>.</li>
+              <li>The Handlebars compiler has been pulled out into two separate compilers, one for those using ember.js, and those who are not.  This removes the need to specifically configure ember.  Instead of configuring ember, just use the ember specific compiler. The <a href="https://github.com/dbashford/mimosa-ember-handlebars">ember-handlebars</a> and <a href="https://github.com/dbashford/mimosa-handlebars">handlebars</a> github pages have details on how to configure those new modules.</li>
+              <li>The mimosa-server module now depends on the project to have the correct transpilers <code>npm install</code>ed to use those transpilers for node.js server code. So, for instance, if LiveScript is being used on the server, then LiveScript must be  <code>npm install</code>ed into the project.</li>
+            </ul>
+          </div>
+        </div>
 
         <h2 id="git">"Error: git is not installed or not in the PATH"</h2>
         <p>By default Mimosa uses Bower.  Bower fetches scripts and libraries from GitHub.  So, Mimosa has a dependency on git because it uses Bower.  If you don't want to install git, then you cannot use Bower.  That isn't a problem!  Just remove <code>"bower"</code> from the list of modules in your <code>mimosa-config</code>.</p>
